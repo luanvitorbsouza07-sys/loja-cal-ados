@@ -43,6 +43,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $item['id'],
             $item['preco']
         ]);
+
+        // BAIXA AUTOMÁTICA DO ESTOQUE
+        $sql = "UPDATE produtos
+                SET estoque = estoque - 1
+                WHERE id = ?";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$item['id']]);
     }
 
     unset($_SESSION['carrinho']);
@@ -58,6 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Checkout</title>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -70,23 +79,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         <div class="card-body">
 
-            <h1>Finalizar Compra</h1>
+            <h1 class="mb-4">Finalizar Compra</h1>
 
             <form method="POST">
 
-                <div class="mb-3">
-                    <input type="radio" name="pagamento" value="PIX" required>
-                    PIX
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="pagamento" value="PIX" required>
+                    <label class="form-check-label">
+                        PIX
+                    </label>
                 </div>
 
-                <div class="mb-3">
-                    <input type="radio" name="pagamento" value="Cartao">
-                    Cartão
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="pagamento" value="Cartao">
+                    <label class="form-check-label">
+                        Cartão
+                    </label>
                 </div>
 
-                <div class="mb-3">
-                    <input type="radio" name="pagamento" value="Boleto">
-                    Boleto
+                <div class="form-check mb-3">
+                    <input class="form-check-input" type="radio" name="pagamento" value="Boleto">
+                    <label class="form-check-label">
+                        Boleto
+                    </label>
                 </div>
 
                 <button type="submit" class="btn btn-success">
@@ -97,9 +112,4 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         </div>
 
-    </div>
-
-</div>
-
-</body>
-</html>
+    <

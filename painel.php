@@ -22,6 +22,7 @@ if (!isset($_SESSION["id"])) {
 <div class="container mt-5">
 
     <div class="card shadow">
+
         <div class="card-body">
 
             <h1 class="mb-3">Painel Administrativo</h1>
@@ -32,8 +33,6 @@ if (!isset($_SESSION["id"])) {
 
             <hr>
 
-            <h3 class="mb-4">Área Administrativa</h3>
-
             <div class="d-grid gap-3">
 
                 <a href="admin/produtos.php" class="btn btn-primary">
@@ -42,6 +41,10 @@ if (!isset($_SESSION["id"])) {
 
                 <a href="admin/listar_produtos.php" class="btn btn-success">
                     Listar Produtos
+                </a>
+
+                <a href="admin/pedidos.php" class="btn btn-dark">
+                    Ver Pedidos
                 </a>
 
                 <a href="produtos.php" class="btn btn-info">
@@ -59,6 +62,7 @@ if (!isset($_SESSION["id"])) {
             </div>
 
         </div>
+
     </div>
 
 </div>
