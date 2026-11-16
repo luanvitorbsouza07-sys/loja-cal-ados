@@ -14,8 +14,12 @@ try {
         $senha
     );
 
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+
 } catch (PDOException $erro) {
 
-    die("Erro: " . $erro->getMessage());
+    die("Erro na conexão: " . $erro->getMessage());
 
 }
+
+?>

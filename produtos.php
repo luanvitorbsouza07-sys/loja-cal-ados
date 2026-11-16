@@ -26,11 +26,9 @@ if (isset($_GET["busca"])) {
 
 <!DOCTYPE html>
 <html lang="pt-br">
-
 <head>
 
     <meta charset="UTF-8">
-
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <title>Loja de Calçados</title>
@@ -73,7 +71,17 @@ if (isset($_GET["busca"])) {
 
             <div class="col-md-4 mb-4">
 
-                <div class="card shadow">
+                <div class="card shadow h-100">
+
+                    <?php if (!empty($produto['imagem'])) { ?>
+
+                        <img
+                            src="<?php echo $produto['imagem']; ?>"
+                            class="card-img-top"
+                            alt="<?php echo $produto['nome']; ?>"
+                            style="height:300px; object-fit:cover;">
+
+                    <?php } ?>
 
                     <div class="card-body">
 
@@ -87,13 +95,12 @@ if (isset($_GET["busca"])) {
 
                         <p>
                             <strong>
-                                R$ <?php echo $produto['preco']; ?>
+                                R$ <?php echo number_format($produto['preco'], 2, ',', '.'); ?>
                             </strong>
                         </p>
 
                         <p>
-                            Estoque:
-                            <?php echo $produto['estoque']; ?>
+                            Estoque: <?php echo $produto['estoque']; ?>
                         </p>
 
                         <a
@@ -121,5 +128,4 @@ if (isset($_GET["busca"])) {
 </div>
 
 </body>
-
 </html>
