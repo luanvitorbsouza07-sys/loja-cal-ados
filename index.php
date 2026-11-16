@@ -1,27 +1,38 @@
+<?php
+require_once("conexao.php");
+
+$sql = "SELECT * FROM produtos";
+$stmt = $pdo->query($sql);
+$produtos = $stmt->fetchAll();
+?>
+
 <!DOCTYPE html>
-<html lang="pt-br">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loja Calçados</title>
+    <title>Loja de Calçados</title>
 </head>
 <body>
 
-    <h1>Loja Calçados</h1>
+<h1>Loja de Calçados</h1>
 
-    <nav>
-        <a href="index.php">Início</a> |
-        <a href="login.php">Login</a> |
-        <a href="cadastro.php">Cadastro</a>
-    </nav>
+<a href="login.php">Login</a>
+<a href="cadastro.php">Cadastro</a>
+
+<hr>
+
+<?php foreach($produtos as $produto): ?>
+
+    <h3><?= $produto['nome'] ?></h3>
+
+    <p><?= $produto['descricao'] ?></p>
+
+    <p>
+        R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
+    </p>
 
     <hr>
 
-    <h2>Produtos em Destaque</h2>
-
-    <p>Bem-vindo à melhor loja de calçados high tear do Brasil!</p>
-    <?php
-
+<?php endforeach; ?>
 
 </body>
 </html>
