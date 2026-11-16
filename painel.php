@@ -2,7 +2,7 @@
 
 session_start();
 
-if (!isset($_SESSION['id'])) {
+if (!isset($_SESSION["id"])) {
     die("Acesso negado");
 }
 
@@ -12,21 +12,46 @@ if (!isset($_SESSION['id'])) {
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Painel</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Painel Administrativo</title>
 </head>
 <body>
 
     <h1>Painel Administrativo</h1>
 
-    <p>Bem-vindo, <?php echo $_SESSION['nome']; ?></p>
+    <p>Bem-vindo, <?php echo $_SESSION["nome"]; ?></p>
 
     <hr>
 
-    <a href="produtos.php">Produtos</a><br><br>
+    <h2>Área Administrativa</h2>
 
-    <a href="carrinho.php">Carrinho</a><br><br>
+    <a href="admin/produtos.php">
+        Cadastrar Produto
+    </a>
 
-    <a href="logout.php">Sair</a>
+    <br><br>
+
+    <a href="admin/listar_produtos.php">
+        Listar Produtos
+    </a>
+
+    <br><br>
+
+    <a href="produtos.php">
+        Ver Loja
+    </a>
+
+    <br><br>
+
+    <a href="carrinho.php">
+        Ver Carrinho
+    </a>
+
+    <br><br>
+
+    <a href="logout.php">
+        Sair
+    </a>
 
 </body>
 </html>
