@@ -14,44 +14,54 @@ if (!isset($_SESSION["id"])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Painel Administrativo</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-    <h1>Painel Administrativo</h1>
+<div class="container mt-5">
 
-    <p>Bem-vindo, <?php echo $_SESSION["nome"]; ?></p>
+    <div class="card shadow">
+        <div class="card-body">
 
-    <hr>
+            <h1 class="mb-3">Painel Administrativo</h1>
 
-    <h2>Área Administrativa</h2>
+            <p class="fs-5">
+                Bem-vindo, <strong><?php echo $_SESSION["nome"]; ?></strong>
+            </p>
 
-    <a href="admin/produtos.php">
-        Cadastrar Produto
-    </a>
+            <hr>
 
-    <br><br>
+            <h3 class="mb-4">Área Administrativa</h3>
 
-    <a href="admin/listar_produtos.php">
-        Listar Produtos
-    </a>
+            <div class="d-grid gap-3">
 
-    <br><br>
+                <a href="admin/produtos.php" class="btn btn-primary">
+                    Cadastrar Produto
+                </a>
 
-    <a href="produtos.php">
-        Ver Loja
-    </a>
+                <a href="admin/listar_produtos.php" class="btn btn-success">
+                    Listar Produtos
+                </a>
 
-    <br><br>
+                <a href="produtos.php" class="btn btn-info">
+                    Ver Loja
+                </a>
 
-    <a href="carrinho.php">
-        Ver Carrinho
-    </a>
+                <a href="carrinho.php" class="btn btn-warning">
+                    Ver Carrinho
+                </a>
 
-    <br><br>
+                <a href="logout.php" class="btn btn-danger">
+                    Sair
+                </a>
 
-    <a href="logout.php">
-        Sair
-    </a>
+            </div>
+
+        </div>
+    </div>
+
+</div>
 
 </body>
 </html>

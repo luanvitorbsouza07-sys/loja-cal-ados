@@ -1,38 +1,47 @@
-<?php
-require_once("conexao.php");
-
-$sql = "SELECT * FROM produtos";
-$stmt = $pdo->query($sql);
-$produtos = $stmt->fetchAll();
-?>
-
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Loja de Calçados</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
 
-<h1>Loja de Calçados</h1>
+<div class="container mt-5">
 
-<a href="login.php">Login</a>
-<a href="cadastro.php">Cadastro</a>
+    <div class="text-center">
 
-<hr>
+        <h1 class="mb-4">Loja de Calçados</h1>
 
-<?php foreach($produtos as $produto): ?>
+        <p class="lead">
+            Confira nossos tênis, sandálias e chinelos.
+        </p>
 
-    <h3><?= $produto['nome'] ?></h3>
+    </div>
 
-    <p><?= $produto['descricao'] ?></p>
+    <div class="d-flex justify-content-center gap-3 mt-4">
 
-    <p>
-        R$ <?= number_format($produto['preco'], 2, ',', '.') ?>
-    </p>
+        <a href="produtos.php" class="btn btn-primary">
+            Produtos
+        </a>
 
-    <hr>
+        <a href="login.php" class="btn btn-success">
+            Login
+        </a>
 
-<?php endforeach; ?>
+        <a href="cadastro.php" class="btn btn-warning">
+            Cadastro
+        </a>
+
+        <a href="carrinho.php" class="btn btn-info">
+            Carrinho
+        </a>
+
+    </div>
+
+</div>
 
 </body>
 </html>
