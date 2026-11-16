@@ -1,14 +1,10 @@
 <?php
 
 session_start();
-require "conexao.php";
 
-if (!isset($_SESSION["id"])) {
+if (!isset($_SESSION['id'])) {
     die("Acesso negado");
 }
-
-$sql = "SELECT * FROM produtos";
-$stmt = $pdo->query($sql);
 
 ?>
 
@@ -16,39 +12,21 @@ $stmt = $pdo->query($sql);
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Painel Administrativo</title>
+    <title>Painel</title>
 </head>
 <body>
 
-<h1>Painel Administrativo</h1>
+    <h1>Painel Administrativo</h1>
 
-<h2>Produtos Cadastrados</h2>
+    <p>Bem-vindo, <?php echo $_SESSION['nome']; ?></p>
 
-<table border="1">
+    <hr>
 
-<tr>
-    <th>ID</th>
-    <th>Nome</th>
-    <th>Preço</th>
-    <th>Estoque</th>
-</tr>
+    <a href="produtos.php">Produtos</a><br><br>
 
-<?php while($produto = $stmt->fetch()) { ?>
+    <a href="carrinho.php">Carrinho</a><br><br>
 
-<tr>
-    <td><?= $produto['id'] ?></td>
-    <td><?= $produto['nome'] ?></td>
-    <td>R$ <?= $produto['preco'] ?></td>
-    <td><?= $produto['estoque'] ?></td>
-</tr>
-
-<?php } ?>
-
-</table>
-
-<br>
-
-<a href="produtos.php">Ver Loja</a>
+    <a href="logout.php">Sair</a>
 
 </body>
 </html>
