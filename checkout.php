@@ -7,7 +7,7 @@ if (!isset($_SESSION['id'])) {
     die("Faça login para finalizar a compra.");
 }
 
-if (!isset($_SESSION['carrinho'])) {
+if (!isset($_SESSION['carrinho']) || empty($_SESSION['carrinho'])) {
     die("Carrinho vazio.");
 }
 
@@ -42,54 +42,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $item['id'],
             $item['preco']
         ]);
+
+        // Diminui o estoque
+        $sql = "UPDATE produtos
+                SET estoque = estoque - 1
+                WHERE id = ?";
+
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute([$item['id']]);
     }
 
     unset($_SESSION['carrinho']);
 
     echo "<h2>Compra realizada com sucesso!</h2>";
+    echo '<a href="produtos.php">Voltar para a Loja</a>';
+
     exit();
-}
-
-?>
-
-<!DOCTYPE html>
-<html lang="pt-br">
-<head>
-    <meta charset="UTF-8">
-    <title>Checkout</title>
-</head>
-<body>
-
-<h1>Finalizar Compra</h1>
-
-<form method="POST">
-
-    <label>
-        <input type="radio" name="pagamento" value="PIX" required>
-        PIX
-    </label>
-
-    <br><br>
-
-    <label>
-        <input type="radio" name="pagamento" value="Cartao">
-        Cartão
-    </label>
-
-    <br><br>
-
-    <label>
-        <input type="radio" name="pagamento" value="Boleto">
-        Boleto
-    </label>
-
-    <br><br>
-
-    <button type="submit">
-        Confirmar Compra
-    </button>
-
-</form>
-
-</body>
-</html>
